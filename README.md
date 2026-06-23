@@ -141,6 +141,8 @@ more to the per-step arithmetic.
 This is practical for design iteration. A full 16-channel simulation at 25 GHz
 spacing would take approximately 1 second.
 
+![Fig. 3: Four-channel crosstalk matrix showing SPM on the diagonal, XPM at 2x coupling off-diagonal, and FWM enhancement at nearest-neighbor pairs.](./figures/dwdm_03_crosstalk_matrix.png)
+
 ### Metro — 160 km, 2 Spans, Amplified
 
 Four channels at 100 GHz spacing over 160 km (two 80 km spans with EDFA
@@ -168,6 +170,10 @@ Each channel frequency is an exact integer number of Hertz, projected onto the
 Q335 basis (denominator 2³³⁵). No floating-point representation of frequency is
 used at any point. Channel spacings of 100 GHz, 50 GHz, 25 GHz, and 12.5 GHz
 are exact integer multiples of the base grid.
+
+![Fig. 4: Log-scale landscape showing the Q335 precision floor 66 orders of magnitude below Planck length, dwarfing every physical scale in fiber propagation.](./figures/dwdm_04_q335_landscape.png)
+
+![Fig. 6: ITU channel grid at four standard spacings from 100 GHz to 12.5 GHz, showing how channel density doubles with each halving of spacing.](./figures/dwdm_06_itu_channel_grid.png)
 
 ### Fiber Parameters — Exact Rational
 
@@ -201,6 +207,10 @@ the nonlinear step as well.
 The inner loop is therefore pure Q335 integer arithmetic: multiply, add, subtract.
 No sin, no cos, no exp. D = 2³³⁵ throughout. Overflow in R. Zero drift.
 
+![Fig. 5: Relative error of the small-angle approximation sin(phi) ≈ phi, with the datacenter operating point at 0.017 rad showing negligible error of 5e-8.](./figures/dwdm_05_phase_rotation_error.png)
+
+![Fig. 7: Quadratic dispersion phase growth with channel offset from center, confirming exact symmetry between equidistant channel pairs.](./figures/dwdm_07_dispersion_phase.png)
+F
 ### Four-Wave Mixing
 
 FWM is computed for degenerate channel triplets where the phase-matching condition
@@ -208,6 +218,10 @@ is approximately satisfied. The phase mismatch efficiency uses a Lorentzian
 approximation (exact rational) rather than a sinc function (which would require
 transcendental calls). FWM contributions are additive field perturbations — no
 phase rotation needed, no transcendental calls.
+
+![Fig. 1: Lorentzian phase matching efficiency drops sharply with channel spacing, showing why FWM dominates at 25 GHz but is negligible at 100 GHz.](./figures/dwdm_01_fwm_efficiency.png)
+
+![Fig. 2: FWM triplet geometry on the datacenter channel grid, showing frequency conservation and products landing both on-grid and off-grid.](./figures/dwdm_02_fwm_triplet.png)
 
 ### Float Mirror
 
@@ -271,6 +285,8 @@ config = LinkConfig(
 result = run_simulation(config)
 print(result.report())
 ```
+
+![Fig. 8: Three deployment regimes from datacenter to transoceanic on a log-distance scale, with channel counts, step counts, and current verification status.](./figures/dwdm_08_deployment_landscape.png)
 
 ### Accessing Exact Values
 
